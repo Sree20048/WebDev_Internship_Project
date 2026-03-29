@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List - Web Development Project</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<!-- IMPORTANT: ADD CLASS -->
+<body class="todo">
+
+    <!-- Navigation Bar -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">My Internship Project</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="todo.html">To-Do List</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- To-Do Section -->
+    <section class="todo-section">
+    <h2 class="title">My To-Do List</h2>
+
+    <div class="input-area">
+        <input type="text" id="taskInput" placeholder="Enter a task">
+        <button id="addTaskBtn">Add Task</button>
+    </div>
+
+    <ul id="taskList"></ul>
+</section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 Web Development Internship Project</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        const addBtn = document.getElementById('addTaskBtn');
+        const taskInput = document.getElementById('taskInput');
+        const taskList = document.getElementById('taskList');
+
+        // Add Task
+        addBtn.addEventListener('click', function() {
+            const taskText = taskInput.value.trim();
+
+            if(taskText === '') {
+                alert("Please enter a task!");
+                return;
+            }
+
+            const li = document.createElement('li');
+            li.textContent = taskText;
+
+            // Mark as completed
+            li.addEventListener('click', function() {
+                li.style.textDecoration = 'line-through';
+            });
+
+            // Remove button
+            const removeBtn = document.createElement('button');
+            removeBtn.textContent = 'Remove';
+            removeBtn.style.marginLeft = '10px';
+
+            removeBtn.addEventListener('click', function() {
+                taskList.removeChild(li);
+            });
+
+            li.appendChild(removeBtn);
+            taskList.appendChild(li);
+
+            taskInput.value = '';
+        });
+
+        // Enter key support
+        taskInput.addEventListener('keypress', function(e) {
+            if(e.key === 'Enter') {
+                addBtn.click();
+            }
+        });
+    </script>
+
+</body>
+</html>

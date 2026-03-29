@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Professional Dark Portfolio</title>
+<style>
+/* ---------- Reset ---------- */
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI', Arial, sans-serif; }
+
+/* ---------- Body ---------- */
+body { color:#fff; line-height:1.6; scroll-behavior:smooth; }
+
+/* ---------- Navbar ---------- */
+.navbar {
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 50px;
+    background:rgba(0,0,0,0.85);
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+.logo { font-size:1.8rem; font-weight:bold; color:#4CAF50; }
+.nav-links { list-style:none; display:flex; gap:25px; }
+.nav-links a { text-decoration:none; color:#fff; transition:.3s; position:relative; }
+.nav-links a:hover, .nav-links a.active { color:#4CAF50; }
+.nav-links a.active::after, .nav-links a:hover::after {
+    content:'';
+    position:absolute;
+    bottom:-5px; left:0;
+    width:100%; height:2px;
+    background:#4CAF50;
+}
+
+/* ---------- Sections ---------- */
+section {
+    width:100%;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    background-size:cover;
+    background-position:center;
+    position:relative;
+    padding:20px;
+}
+section::before {
+    content:'';
+    position:absolute;
+    top:0; left:0; right:0; bottom:0;
+    background:rgba(0,0,0,0.55); /* dim overlay */
+}
+section>* { position:relative; z-index:1; }
+
+/* ---------- Titles ---------- */
+section h1, section h2 { font-size:3rem; margin-bottom:20px; }
+section p { font-size:1.2rem; max-width:700px; }
+
+/* ---------- Contact Form ---------- */
+.contact-section {
+    max-width:500px;
+    width:100%;
+}
+#contactForm {
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+#contactForm label { text-align:left; font-weight:600; }
+#contactForm input, #contactForm textarea {
+    padding:10px;
+    border:none;
+    border-radius:6px;
+    outline:none;
+    width:100%;
+    background:rgba(255,255,255,0.1);
+    color:#fff;
+}
+#contactForm input:focus, #contactForm textarea:focus { border:2px solid #4CAF50; }
+#contactForm button {
+    margin-top:10px;
+    padding:12px;
+    background:#4CAF50;
+    border:none;
+    color:#fff;
+    border-radius:6px;
+    cursor:pointer;
+    transition:.3s;
+    font-size:1rem;
+}
+#contactForm button:hover { background:#45a049; }
+#formMessage { margin-top:10px; text-align:center; color:#4CAF50; }
+
+/* ---------- To-Do ---------- */
+#todo { flex-direction:column; }
+#taskInput {
+    padding:10px;
+    width:60%;
+    border-radius:6px;
+    border:none;
+    background:rgba(255,255,255,0.1);
+    color:#fff;
+    outline:none;
+}
+#taskInput {
+    width: 40%;   /* पहले 60% → കുറച്ചു */
+    max-width: 300px;  /* limit */
+    padding: 8px;
+    border-radius: 6px;
+
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+    border: none;
+}
+#addTaskBtn:hover { background:#45a049; }
+#taskList {
+    max-width: 350px; /* reduce overall list width */
+}
+
+#/* To-Do Container */
+#todo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Input + Button same width */
+#taskInput, #addTaskBtn {
+    width: 300px;   /* SAME WIDTH */
+}
+
+/* Input */
+#taskInput {
+    padding: 10px;
+    border-radius: 6px;
+    border: none;
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+}
+
+/* Add Button */
+#addTaskBtn {
+    margin-top: 10px; /* space */
+    padding: 10px;
+    background: #4CAF50; /* GREEN */
+    border: none;
+    color: #fff;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+#addTaskBtn:hover {
+    background: #45a049;
+}
+
+/* Task List */
+#taskList {
+    margin-top: 20px; /* SPACE between button & list */
+    width: 300px;     /* SAME WIDTH */
+}
+
+/* Task Item */
+#taskList li {
+    background: rgba(255,255,255,0.12);
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 5px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    word-break: break-word;
+}
+#taskList li:hover { background: rgba(255,255,255,0.2); }
+#taskList li button {
+    background:#e74c3c;
+    border:none;
+    color:#fff;
+    padding:5px 8px;
+    border-radius:4px;
+    cursor:pointer;
+}
+
+/* ---------- Footer ---------- */
+footer {
+    text-align:center;
+    padding:20px;
+    margin-top:40px;
+    background:rgba(0,0,0,0.85);
+    border-top:1px solid #4CAF50;
+}
+
+/* ---------- Responsive ---------- */
+@media(max-width:768px){
+    .navbar { flex-direction:column; gap:10px; }
+    #taskInput, #addTaskBtn { width:100%; }
+}
+
+/* ---------- Background Images ---------- */
+#home { background:url('https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1080&w=1920') center/cover no-repeat; }
+#about { background:url('https://images.pexels.com/photos/3184639/pexels-photo-3184639.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1080&w=1920') center/cover no-repeat; }
+#contact { 
+    background:url('https://images.pexels.com/photos/3184287/pexels-photo-3184287.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1080&w=1920') center/cover no-repeat; 
+    height:100vh; /* Force full viewport height */
+}
+#todo { background:url('https://images.pexels.com/photos/3182838/pexels-photo-3182838.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1080&w=1920') center/cover no-repeat; }
+
+/* Make sure section always fills viewport for contact */
+#contact { display:flex; justify-content:center; align-items:center; }
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+    <div class="logo">Professional Dark Portfolio</div>
+    <ul class="nav-links">
+        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#todo">To-Do</a></li>
+    </ul>
+</nav>
+
+<!-- Sections -->
+<section id="home">
+    <h1>Professional Dark Portfolio</h1>
+    <p>Modern design with full background imagery and smooth experience.</p>
+</section>
+
+<section id="about">
+    <h2>About Me</h2>
+    <p>I build professional web portfolios with clean, sophisticated backgrounds.</p>
+</section>
+
+<section id="contact">
+    <div class="contact-box">
+        <h2>Contact Me</h2>
+
+        <form id="contactForm">
+
+            <label for="name">Name:</label>
+            <input type="text" id="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" required>
+
+            <label for="message">Message:</label>
+            <textarea id="message" rows="5" required></textarea>
+
+            <button type="submit">Send Message</button>
+
+        </form>
+
+        <p id="formMessage"></p>
+    </div>
+</section>
+
+<section id="todo">
+    <h2>To-Do List</h2>
+    <input type="text" id="taskInput" placeholder="Enter task">
+    <button id="addTaskBtn">Add Task</button>
+    <ul id="taskList"></ul>
+</section>
+
+<footer>
+    <p>© 2026 Professional Dark Portfolio | Created by You</p>
+</footer>
+
+<script>
+// Navbar active link
+const navLinks = document.querySelectorAll('.nav-links a');
+navLinks.forEach(link=>{
+    link.addEventListener('click', function(){
+        navLinks.forEach(l=>l.classList.remove('active'));
+        this.classList.add('active');
+    });
+});
+
+// Contact Form
+const contactForm = document.getElementById('contactForm');
+const formMessage = document.getElementById('formMessage');
+contactForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const message = document.getElementById('message').value.trim();
+    if(!name || !email || !message){
+        formMessage.style.color='red';
+        formMessage.textContent='Please fill all fields.';
+        return;
+    }
+    formMessage.style.color='#4CAF50';
+    formMessage.textContent='Message sent successfully!';
+    contactForm.reset();
+    setTimeout(()=>formMessage.textContent='',3000);
+});
+
+// To-Do List
+const addBtn=document.getElementById('addTaskBtn');
+const taskInput=document.getElementById('taskInput');
+const taskList=document.getElementById('taskList');
+addBtn.addEventListener('click', function(){
+    const taskText=taskInput.value.trim();
+    if(taskText!==''){
+        const li=document.createElement('li');
+        li.textContent=taskText;
+        const removeBtn=document.createElement('button');
+        removeBtn.textContent='Remove';
+        removeBtn.addEventListener('click',()=>taskList.removeChild(li));
+        li.appendChild(removeBtn);
+        taskList.appendChild(li);
+        taskInput.value='';
+    }
+});
+taskInput.addEventListener('keypress', function(e){
+    if(e.key==='Enter') addBtn.click();
+});
+</script>
+</body>
+</html>
